@@ -1,8 +1,7 @@
 from flask.ext.restful import fields
 from . import ModelResource
 
-
-class User(ModelResource):
+class UserResource(ModelResource):
     """Represents a user.
     
     Fields:
@@ -18,4 +17,16 @@ class User(ModelResource):
         'username': fields.String
     }
     
-    
+    def get_objects(self):
+        return [
+            {
+                "first_name": "David",
+                "last_name": "Hatch", 
+                "username": "david.hatch"
+            },
+            {
+                "first_name": "Michael", 
+                "last_name": "Menz",
+                "username": "michael.menz"
+            }
+        ]

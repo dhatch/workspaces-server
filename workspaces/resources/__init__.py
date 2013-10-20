@@ -21,4 +21,6 @@ class ModelResource(Resource):
         raise NotImplementedError
     
     def get_list(self):
-        return get_objects()
+        return self.get_objects()
+        
+from .user import UserResource
