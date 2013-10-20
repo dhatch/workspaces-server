@@ -28,7 +28,7 @@ class UserResource(ModelResource):
     }
     
     def get_objects(self):
-        return [
+        return map(lambda obj: obj._asdict(), [
             User(first_name="David", 
                  last_name="Hatch", 
                  username="david.hatch",
@@ -37,4 +37,4 @@ class UserResource(ModelResource):
                  last_name="Menz",
                  username="michael.menz",
                  id='2')
-        ]
+        ])

@@ -1,4 +1,4 @@
-from flask.ext.restful import Resource, marshal_with
+from flask.ext.restful import Resource, marshal
 
 class ModelResource(Resource):
     """A resource with extended methods for querying objects from a datastore."""
@@ -18,7 +18,10 @@ class ModelResource(Resource):
             return self.get_list()
     
     def get_detail(self, id_):
-        return filter(lambda obj: obj.id == id_, self.get_objects())[0]
+        obj = filter(lambda obj: obj.id == id_, 
+                     self.get_objects())[0]
+        return marshal(obj._asdict(),
+                       self.fields)
     
     def get_list(self):
         return self.get_objects()
