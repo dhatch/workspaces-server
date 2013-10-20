@@ -18,7 +18,7 @@ class ModelResource(Resource):
             return self.get_list()
     
     def get_detail(self, id_):
-        raise NotImplementedError
+        return filter(lambda obj: obj.id == id_, self.get_objects())[0]
     
     def get_list(self):
         return self.get_objects()

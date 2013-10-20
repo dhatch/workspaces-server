@@ -7,7 +7,7 @@ from resources import UserResource
 app = Flask(__name__)
 v1_api = restful.Api(app, prefix='/v1/')
 
-v1_api.add_resource(UserResource, 'users/')
+v1_api.add_resource(UserResource, 'users/', 'users/<id_>/')
 
 if __name__ == '__main__':
     app.run(debug=True)
