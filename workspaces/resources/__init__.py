@@ -11,19 +11,19 @@ class ModelResource(Resource):
         """Retrieve an iterable of database objects."""
         pass
     
-    def get(self, id_=None):
+    def get(self, id_=None, **kwargs):
         if id_:
-            return self.get_detail(id_)
+            return self.get_detail(id_, **kwargs)
         else:
-            return self.get_list()
+            return self.get_list(**kwargs)
     
-    def get_detail(self, id_):
+    def get_detail(self, id_, **kwargs):
         obj = filter(lambda obj: obj.id == id_, 
                      self.get_objects())[0]
         return marshal(obj._asdict(),
                        self.fields)
     
-    def get_list(self):
-        return self.get_objects()
+    def get_list(self, **kwargs):
+        return map(lambda obj: obj._asdict(), self.get_objects())
         
 from .user import UserResource
