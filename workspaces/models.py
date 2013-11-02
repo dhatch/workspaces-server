@@ -1,3 +1,5 @@
+from flask.ext import login
+
 from api import app
 
 db = app.db
@@ -19,7 +21,7 @@ class Class(db.Model):
     number = db.Column(db.Integer, index=True)
     section = db.Column(db.Integer)
 
-class User(db.Model):
+class User(db.Model, login.UserMixin):
     __tablename__ = 'workspaces_user'
 
     id = db.Column(db.Integer, primary_key=True)
