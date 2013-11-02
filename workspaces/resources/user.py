@@ -2,7 +2,7 @@ from collections import namedtuple
 
 from flask.ext.restful import fields
 
-from . import ModelResource
+from model import ModelResource
 
 
 # temporary shim to hold in for database
