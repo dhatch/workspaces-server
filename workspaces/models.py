@@ -1,4 +1,4 @@
-from workspaces.api import app
+from api import app
 
 db = app.db
 
@@ -23,7 +23,8 @@ class User(db.Model):
     __tablename__ = 'workspaces_user'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64), index=True, unique=True)
+    first_name = db.Column(db.String(64), index=True)
+    last_name = db.Column(db.String(64), index=True)
     email = db.Column(db.String(120), index=True, unique=True)
     # classes = db.relationship('Schedule', secondary=schedules,
     #     backref=db.backref('users', lazy='dynamic'))
