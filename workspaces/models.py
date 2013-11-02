@@ -1,4 +1,4 @@
-from workspaces.api import app
+from api import app
 
 db = app.db
 
