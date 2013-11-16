@@ -1,6 +1,6 @@
 from ..core import db
 
-department_classes = db.Table('departments_classes',
+departments_classes = db.Table('departments_classes',
     db.Column('department_id', db.Integer, db.ForeignKey('department.id')),
     db.Column('class_id', db.Integer, db.ForeignKey('class.id'))
 )
