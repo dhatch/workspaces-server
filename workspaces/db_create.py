@@ -1,6 +1,4 @@
-from api import app
-from models import *
-
-db = app.db
+from .core import db
+from .models import *
 
 db.create_all()
