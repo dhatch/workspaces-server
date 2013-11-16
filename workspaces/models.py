@@ -35,7 +35,14 @@ class User(db.Model, security.UserMixin):
     #     backref=db.backref('users', lazy='dynamic'))
     # friend_list = db.relationship('Friend_list', secondary=friend_lists,
     #     backref=db.backref('users', lazy='dynamic'))
-
+    
+    @property
+    def name(self):
+        if self.first_name and self.last_name:
+            return " ".join([self.first_name, self.last_name]).title()
+        else:
+            return self.username
+    
     def __repr__(self):
         return '<User %r>' % (self.name)
 
