@@ -3,13 +3,13 @@ from flask.ext.restful import Resource, marshal
 class ModelResource(Resource):
     """A resource with extended methods for querying objects from a datastore."""
     
-    def get_obj(self):
+    def get_obj(self, id_):
         """Retrive an object from the database."""
-        pass
+        return self.model.query.get(id_)
         
     def get_objects(self):
         """Retrieve an iterable of database objects."""
-        pass
+        return self.model.query.all()
     
     def get(self, id_=None, **kwargs):
         if id_:
@@ -18,10 +18,8 @@ class ModelResource(Resource):
             return self.get_list(**kwargs)
     
     def get_detail(self, id_, **kwargs):
-        obj = filter(lambda obj: obj.id == id_, 
-                     self.get_objects())[0]
-        return marshal(obj._asdict(),
-                       self.fields)
+        obj = self.get_obj(id_)
+        return marshal(obj, self.fields)
     
     def get_list(self, **kwargs):
-        return map(lambda obj: obj._asdict(), self.get_objects())
+        return [marshal(o, self.fields) for o in self.get_objects()]
