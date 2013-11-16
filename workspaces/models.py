@@ -28,6 +28,9 @@ class User(db.Model, security.UserMixin):
     password = db.Column(db.String(255))
     active = db.Column(db.Boolean())
     confirmed_at = db.Column(db.DateTime())
+    first_name = db.Column(db.String(64), index=True)
+    last_name = db.Column(db.String(64), index=True)
+
     # classes = db.relationship('Schedule', secondary=schedules,
     #     backref=db.backref('users', lazy='dynamic'))
     # friend_list = db.relationship('Friend_list', secondary=friend_lists,
