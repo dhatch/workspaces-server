@@ -1,4 +1,5 @@
 from flask.ext import login, security
+from coaster.sqlalchemy import BaseMixin
 
 from .core import db
 from .classes.models import *
@@ -12,10 +13,9 @@ schedules = db.Table('schedules',
 #     db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
 #     db.Column('user_id', db.Integer, db.ForeignKey('user.id')))
 
-class User(db.Model, security.UserMixin):
+class User(BaseMixin, db.Model, security.UserMixin):
     __tablename__ = 'workspaces_user'
 
-    id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(255), unique=True)
     username = db.Column(db.String(64), unique=True)
     password = db.Column(db.String(255))
@@ -40,7 +40,6 @@ class User(db.Model, security.UserMixin):
     def __repr__(self):
         return '<User %r>' % (self.name)
 
-class Role(db.Model, security.RoleMixin):
-    id = db.Column(db.Integer(), primary_key=True)
+class Role(BaseMixin, db.Model, security.RoleMixin):
     name = db.Column(db.String(80), unique=True)
     description = db.Column(db.String(255))
