@@ -1,6 +1,7 @@
 from flask.ext import login, security
 
 from .core import db
+from .classes.models import *
 
 # schedules = db.Table('schedules',
 #     db.Column('class_id', db.Integer, db.ForeignKey('class.id')),
@@ -10,14 +11,6 @@ from .core import db
 # friend_lists = db.Table('friend_lists',
 #     db.Column('user_id', db.Integer, db.ForeignKey('user.id')),
 #     db.Column('user_id', db.Integer, db.ForeignKey('user.id')))
-
-class Class(db.Model):
-
-    id = db.Column(db.Integer, primary_key=True)
-    department = db.Column(db.String(64))
-    name = db.Column(db.String(128), index=True)
-    number = db.Column(db.Integer, index=True)
-    section = db.Column(db.Integer)
 
 class User(db.Model, security.UserMixin):
     __tablename__ = 'workspaces_user'
