@@ -16,3 +16,4 @@ class Class(BaseMixin, db.Model):
     name = db.Column(db.String(255), index=True, nullable=False)
     number = db.Column(db.Integer, index=True, nullable=False)
     section = db.Column(db.Integer)
+    posts = db.relationship('Post', backref='class_', lazy='dynamic')

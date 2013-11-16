@@ -2,6 +2,8 @@ from flask.ext import login, security
 
 from .core import db, BaseMixin
 from .classes.models import *
+from .posts.models import *
+
 
 schedules = db.Table('schedules',
     db.Column('class_id', db.Integer, db.ForeignKey('class.id')),
@@ -25,7 +27,8 @@ class User(BaseMixin, db.Model, security.UserMixin):
 
     classes = db.relationship('Class', secondary=schedules,
         backref=db.backref('students', lazy='dynamic'), lazy='dynamic')
-        
+    posts = db.relationship('Post', backref='creator', lazy='dynamic')
+    
     # friend_list = db.relationship('Friend_list', secondary=friend_lists,
     #     backref=db.backref('users', lazy='dynamic'))
     
