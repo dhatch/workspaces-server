@@ -1,7 +1,6 @@
 from flask.ext import login, security
-from coaster.sqlalchemy import BaseMixin
 
-from .core import db
+from .core import db, BaseMixin
 from .classes.models import *
 
 schedules = db.Table('schedules',

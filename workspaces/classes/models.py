@@ -1,13 +1,11 @@
-from coaster.sqlalchemy import BaseMixin
-
-from ..core import db
+from ..core import db, BaseMixin
 
 departments_classes = db.Table('departments_classes',
     db.Column('department_id', db.Integer, db.ForeignKey('department.id')),
     db.Column('class_id', db.Integer, db.ForeignKey('class.id'))
 )
 
-class Department(BaseMixin, db.Model):
+class Department(BaseMixin, db.Model):    
     name = db.Column(db.String(255), nullable=False)
     abbreviation = db.Column(db.String(10), index=True, nullable=False)
     classes = db.relationship('Class', secondary=departments_classes,
